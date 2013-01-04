@@ -75,7 +75,9 @@ class SoftwareTest extends \ModelTest
         $this->setValuesTest($model, 'setLanguagesISO2A', 'getLanguagesISO2A', array(array('RU', 'EN', 'US')));
         $this->setValuesTest($model, 'setPrimaryGenreId', 'getPrimaryGenreId', array(1, '6014', 345));
         $this->setValuesTest($model, 'setprimaryGenreName', 'getPrimaryGenreName', array('Games', 'Utilites'));
-        $this->setValuesTest($model, 'setArtworkUrl160', 'getArtworkUrl160', array('url 1', 'url 2'));
+        $this->setValuesTest($model, 'setArtworkUrl60', 'getArtworkUrl60', array('url 1', 'url 2'));
+        $this->setValuesTest($model, 'setArtworkUrl100', 'getArtworkUrl100', array('url 1', 'url 2'));
+        $this->setValuesTest($model, 'setArtworkUrl512', 'getArtworkUrl512', array('url 1', 'url 2'));
 
         // Track view url test
         $this->setValuesTest($model, 'setTrackViewUrl', 'getTrackViewurl', array(

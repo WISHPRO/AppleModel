@@ -139,7 +139,17 @@ class Software extends AbstractModel implements SoftwareInterface
     /**
      * @var string
      */
-    protected $artworkUrl160;
+    protected $artworkUrl60;
+
+    /**
+     * @var string
+     */
+    protected $artworkUrl100;
+
+    /**
+     * @var string
+     */
+    protected $artworkUrl512;
 
     /**
      * @{inerhitDoc}
@@ -643,9 +653,9 @@ class Software extends AbstractModel implements SoftwareInterface
     /**
      * @{inerhitDoc}
      */
-    public function setArtworkUrl160($artworkUrl160)
+    public function setArtworkUrl60($artworkUrl)
     {
-        $this->artworkUrl160 = $artworkUrl160;
+        $this->artworkUrl60 = $artworkUrl;
 
         return $this;
     }
@@ -653,8 +663,44 @@ class Software extends AbstractModel implements SoftwareInterface
     /**
      * @{inerhitDoc}
      */
-    public function getArtworkUrl160()
+    public function getArtworkUrl60()
     {
-        return $this->artworkUrl160;
+        return $this->artworkUrl60;
+    }
+
+    /**
+     * @{inerhitDoc}
+     */
+    public function setArtworkUrl100($artworkUrl)
+    {
+        $this->artworkUrl100 = $artworkUrl;
+
+        return $this;
+    }
+
+    /**
+     * @{inerhitDoc}
+     */
+    public function getArtworkUrl100()
+    {
+        return $this->artworkUrl100;
+    }
+
+    /**
+     * @{inerhitDoc}
+     */
+    public function setArtworkUrl512($artworkUrl512)
+    {
+        $this->artworkUrl512 = $artworkUrl512;
+
+        return $this;
+    }
+
+    /**
+     * @{inerhitDoc}
+     */
+    public function getArtworkUrl512()
+    {
+        return $this->artworkUrl512;
     }
 }

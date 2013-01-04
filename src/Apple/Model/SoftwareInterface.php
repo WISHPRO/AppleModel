@@ -373,16 +373,44 @@ interface SoftwareInterface
     public function getPrimaryGenreName();
 
     /**
-     * Set artwork url [160]
+     * Set artwork url [60]
      *
      * @param string $artworkUrl
      */
-    public function setArtworkUrl160($artworkUrl);
+    public function setArtworkUrl60($artworkUrl);
 
     /**
-     * Get artwork url
+     * Get artwork url [60]
      *
      * @return string
      */
-    public function getArtworkUrl160();
+    public function getArtworkUrl60();
+
+    /**
+     * Set artwork url [100]
+     *
+     * @param string $artworkUrl
+     */
+    public function setArtworkUrl100($artworkUrl);
+
+    /**
+     * Get artwork url [100]
+     *
+     * @return string
+     */
+    public function getArtworkUrl100();
+
+    /**
+     * Set artwork url [512]
+     *
+     * @param string $artworkUrl
+     */
+    public function setArtworkUrl512($artworkUrl);
+
+    /**
+     * Get artwork url [512]
+     *
+     * @return string
+     */
+    public function getArtworkUrl512();
 }
