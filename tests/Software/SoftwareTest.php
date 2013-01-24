@@ -121,12 +121,7 @@ class SoftwareTest extends \ModelTest
         // Set iOS platform
         $model->setPlatform(SoftwareInterface::PLATFORM_IOS);
 
-        // Universal type iOS
-        $model->setSupportedDevices(array('iphone', 'ipad', '....', 'all'));
-        $this->assertEquals($model->getTypeIos(), SoftwareInterface::TYPE_IOS_UNIVERSAL);
-
         // Not universal iOS (Control devices)
-        $model->setSupportedDevices(array(1, 2, 3));
         $model->setScreenshotUrls(array('s1', 's2', 's3')); // Must be iPhone type iOS
         $this->assertNotEquals($model->getTypeIos(), SoftwareInterface::TYPE_IOS_UNIVERSAL);
 
@@ -138,7 +133,7 @@ class SoftwareTest extends \ModelTest
         $model->setIpadScreenshotUrls(array('s1', 's2', 's3'));
         $this->assertEquals($model->getTypeIos(), SoftwareInterface::TYPE_IOS_IPAD);
 
-        // Add iPhone screenshots
+        // Add iPhone screenshots (Must be Universal)
         $model->setScreenshotUrls(array('s1', 's2', 's3'));
         $this->assertEquals($model->getTypeIos(), SoftwareInterface::TYPE_IOS_UNIVERSAL);
 

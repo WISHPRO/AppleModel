@@ -182,12 +182,8 @@ class Software extends AbstractModel implements SoftwareInterface
             throw new \LogicException('Can\'t get type iOS in Mac software.');
         }
 
-        if (!$this->supportedDevices && !$this->screenshotUrls && !$this->iPadScreenshotUrls) {
+        if (!$this->screenshotUrls && !$this->iPadScreenshotUrls) {
             throw new \InvalidArgumentException('Not found support devices and supported device.');
-        }
-
-        if (in_array('all', $this->supportedDevices)) {
-            return SoftwareInterface::TYPE_IOS_UNIVERSAL;
         }
 
         if ($this->screenshotUrls && $this->iPadScreenshotUrls) {
