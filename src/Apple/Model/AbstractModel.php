@@ -77,7 +77,7 @@ abstract class AbstractModel implements ModelInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function setTrackId($trackId)
     {
@@ -87,7 +87,7 @@ abstract class AbstractModel implements ModelInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function getTrackId()
     {
@@ -95,7 +95,7 @@ abstract class AbstractModel implements ModelInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function setAppStore(AppStoreInterface $appStore)
     {
@@ -105,7 +105,7 @@ abstract class AbstractModel implements ModelInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function getAppStore()
     {
@@ -113,7 +113,7 @@ abstract class AbstractModel implements ModelInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function setArtistName($artistName)
     {
@@ -123,7 +123,7 @@ abstract class AbstractModel implements ModelInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function getArtistName()
     {
@@ -131,7 +131,7 @@ abstract class AbstractModel implements ModelInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function setArtistId($artistId)
     {
@@ -141,7 +141,7 @@ abstract class AbstractModel implements ModelInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function getArtistId()
     {

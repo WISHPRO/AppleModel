@@ -152,7 +152,7 @@ class Software extends AbstractModel implements SoftwareInterface
     protected $artworkUrl512;
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function setPlatform($platform)
     {
@@ -166,7 +166,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function getPlatform()
     {
@@ -174,7 +174,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function getTypeIos()
     {
@@ -188,20 +188,17 @@ class Software extends AbstractModel implements SoftwareInterface
 
         if ($this->screenshotUrls && $this->iPadScreenshotUrls) {
             return SoftwareInterface::TYPE_IOS_UNIVERSAL;
-        }
-        else if ($this->screenshotUrls) {
+        } else if ($this->screenshotUrls) {
             return SoftwareInterface::TYPE_IOS_IPHONE;
-        }
-        else if ($this->iPadScreenshotUrls) {
+        } else if ($this->iPadScreenshotUrls) {
             return SoftwareInterface::TYPE_IOS_IPAD;
-        }
-        else {
+        } else {
             throw new \LogicException('Can\'t get type iOS. Undefined screenshots');
         }
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function setTrackName($trackName)
     {
@@ -211,7 +208,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function getTrackName()
     {
@@ -219,7 +216,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function setGameCenter($gameCenter)
     {
@@ -229,7 +226,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function getGameCenter()
     {
@@ -237,7 +234,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function setSupportedDevices(array $supportedDevices)
     {
@@ -247,7 +244,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function getSupportedDevices()
     {
@@ -255,7 +252,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function setTrackViewUrl($trackViewUrl)
     {
@@ -265,7 +262,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function getTrackViewUrl()
     {
@@ -273,7 +270,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function setScreenshotUrls(array $screenshotUrls)
     {
@@ -283,7 +280,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function getScreenshotUrls()
     {
@@ -291,7 +288,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function setIpadScreenshotUrls(array $iPadScreenshotUrls)
     {
@@ -301,7 +298,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function getIpadScreenshotUrls()
     {
@@ -309,7 +306,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function setPrice($price)
     {
@@ -319,7 +316,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function getPrice()
     {
@@ -327,7 +324,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function setCurrency($currency)
     {
@@ -337,7 +334,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function getCurrency()
     {
@@ -345,7 +342,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function setVersion($version)
     {
@@ -355,7 +352,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function getVersion()
     {
@@ -363,7 +360,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function setBundleId($bundleId)
     {
@@ -373,7 +370,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function getBundleId()
     {
@@ -381,7 +378,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function setDescription($description)
     {
@@ -391,7 +388,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function getDescription()
     {
@@ -399,7 +396,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function setSellerName($sellerName)
     {
@@ -409,7 +406,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function getSellerName()
     {
@@ -417,7 +414,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function setSellerUrl($sellerUrl)
     {
@@ -427,7 +424,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function getSellerUrl()
     {
@@ -435,7 +432,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function setReleaseDate(\DateTime $releaseDate)
     {
@@ -445,7 +442,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function getReleaseDate()
     {
@@ -453,7 +450,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function setReleaseNotes($releaseNotes)
     {
@@ -463,7 +460,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function getReleaseNotes()
     {
@@ -471,7 +468,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function setFileSize($fileSize)
     {
@@ -481,7 +478,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function getFileSize()
     {
@@ -489,7 +486,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function setUserRatingCount($userRatingCount)
     {
@@ -505,7 +502,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function getUserRatingCount()
     {
@@ -513,7 +510,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function setAverageUserRating($averageUserRating)
     {
@@ -533,7 +530,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function getAverageUserRating()
     {
@@ -541,7 +538,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function setUserRatingCountCurrent($userRatingCountCurrent)
     {
@@ -557,7 +554,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function getUserRatingCountCurrent()
     {
@@ -565,7 +562,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function setAverageUserRatingCurrent($averageUserRatingCurrent)
     {
@@ -585,7 +582,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function getAverageUserRatingCurrent()
     {
@@ -593,7 +590,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function setLanguagesISO2A(array $languagesISO2A)
     {
@@ -603,7 +600,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function getLanguagesISO2A()
     {
@@ -611,7 +608,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function setPrimaryGenreId($genreId)
     {
@@ -621,7 +618,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function getPrimaryGenreId()
     {
@@ -629,7 +626,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function setPrimaryGenreName($genreName)
     {
@@ -639,7 +636,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function getPrimaryGenreName()
     {
@@ -647,7 +644,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function setArtworkUrl60($artworkUrl)
     {
@@ -657,7 +654,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function getArtworkUrl60()
     {
@@ -665,7 +662,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function setArtworkUrl100($artworkUrl)
     {
@@ -675,7 +672,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function getArtworkUrl100()
     {
@@ -683,7 +680,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function setArtworkUrl512($artworkUrl512)
     {
@@ -693,7 +690,7 @@ class Software extends AbstractModel implements SoftwareInterface
     }
 
     /**
-     * @{inerhitDoc}
+     * {@inheritDoc}
      */
     public function getArtworkUrl512()
     {
