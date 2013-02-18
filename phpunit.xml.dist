@@ -11,9 +11,9 @@
          syntaxCheck="false"
          bootstrap="./tests/bootstrap.php"
 >
-  <testsuites>
-    <testsuite name="Apple models tests">
-      <directory>./tests/</directory>
-    </testsuite>
-  </testsuites>
+    <testsuites>
+        <testsuite name="Apple models tests">
+            <directory>./tests/</directory>
+        </testsuite>
+    </testsuites>
 </phpunit>

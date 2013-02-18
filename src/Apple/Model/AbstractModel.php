@@ -16,7 +16,7 @@ use Apple\AppStore\AppStoreInterface;
 /**
  * Abstract core for control apple models
  */
-abstract class AbstractModel implements ModelInterface
+abstract class AbstractModel
 {
     /**
      * @var integer
@@ -77,7 +77,9 @@ abstract class AbstractModel implements ModelInterface
     }
 
     /**
-     * {@inheritDoc}
+     * Set track ID
+     *
+     * @param integer $trackId
      */
     public function setTrackId($trackId)
     {
@@ -87,7 +89,9 @@ abstract class AbstractModel implements ModelInterface
     }
 
     /**
-     * {@inheritDoc}
+     * Get track ID
+     *
+     * @return integer
      */
     public function getTrackId()
     {
@@ -95,7 +99,9 @@ abstract class AbstractModel implements ModelInterface
     }
 
     /**
-     * {@inheritDoc}
+     * Set app store
+     *
+     * @param AppStoreInterface $appStore
      */
     public function setAppStore(AppStoreInterface $appStore)
     {
@@ -105,7 +111,9 @@ abstract class AbstractModel implements ModelInterface
     }
 
     /**
-     * {@inheritDoc}
+     * Get app store
+     *
+     * @return AppStoreInterface
      */
     public function getAppStore()
     {
@@ -113,7 +121,9 @@ abstract class AbstractModel implements ModelInterface
     }
 
     /**
-     * {@inheritDoc}
+     * Set artist name
+     *
+     * @param string $artistName
      */
     public function setArtistName($artistName)
     {
@@ -123,7 +133,9 @@ abstract class AbstractModel implements ModelInterface
     }
 
     /**
-     * {@inheritDoc}
+     * Get artist name
+     *
+     * @return string
      */
     public function getArtistName()
     {
@@ -131,7 +143,9 @@ abstract class AbstractModel implements ModelInterface
     }
 
     /**
-     * {@inheritDoc}
+     * Set artist ID
+     *
+     * @param integer $artistId
      */
     public function setArtistId($artistId)
     {
@@ -141,7 +155,9 @@ abstract class AbstractModel implements ModelInterface
     }
 
     /**
-     * {@inheritDoc}
+     * Get artist ID
+     *
+     * @return integer
      */
     public function getArtistId()
     {

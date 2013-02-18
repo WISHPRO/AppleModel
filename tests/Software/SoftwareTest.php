@@ -9,9 +9,8 @@
  * file that was distributed with this source code
  */
 
-use Apple\Model\Software,
-    Apple\Model\SoftwareInterface,
-    Apple\Model\ModelInterface;
+use Apple\Model\Software;
+use Apple\Model\ModelInterface;
 
 /**
  * Software model test
@@ -33,26 +32,21 @@ class SoftwareTest extends \ModelTest
     {
         $model = new Software;
 
-        $this->assertTrue($model instanceof SoftwareInterface);
-        $this->assertTrue($model instanceof ModelInterface);
+        $this->assertInstanceOf('Apple\Model\AbstractModel', $model);
 
         // Platform test
-        $this->setValuesTest($model, 'setPlatform', 'getPlatform', array(SoftwareInterface::PLATFORM_MAC, SoftwareInterface::PLATFORM_IOS));
+        $this->setValuesTest($model, 'setPlatform', 'getPlatform', array(Software::PLATFORM_MAC, Software::PLATFORM_IOS));
 
         try {
             $model->setPlatform('new platform');
             $this->fail('Not control platform');
-        }
-        catch (\InvalidArgumentException $e)
-        {
+        } catch (\InvalidArgumentException $e) {
         }
 
         try {
             $model->setPlatform('1');
             $this->fail('Not strict control platform.');
-        }
-        catch (\InvalidArgumentException $e)
-        {
+        } catch (\InvalidArgumentException $e) {
         }
 
         // Price, version, game center, bundle and etc. tests
@@ -90,130 +84,101 @@ class SoftwareTest extends \ModelTest
         );
 
         $model->setScreenshotUrls($screenshots);
-        $this->assertEquals($model->getScreenshotUrls(), $screenshots);
+        $this->assertEquals($screenshots, $model->getScreenshotUrls());
 
         $model->setIpadScreenshotUrls($screenshots);
-        $this->assertEquals($model->getIpadScreenshotUrls(), $screenshots);
+        $this->assertEquals($screenshots, $model->getIpadScreenshotUrls());
 
         // Supported devices test
         $model->setSupportedDevices(array('ipad', 'iphone'));
-        $this->assertEquals($model->getSupportedDevices(), array('ipad', 'iphone'));
+        $this->assertEquals(array('ipad', 'iphone'), $model->getSupportedDevices());
     }
 
     /**
-     * Test platform
+     * Test type ios (Control by screenshots)
+     *
+     * @dataProvider providerSoftwareTypeIos
      */
-    public function testSoftwareTypeIOS()
+    public function testSoftwareTypeIos(array $screens, array $ipadScreens, $type)
     {
         $model = $this->createNewModel();
+        $model->setPlatform(Software::PLATFORM_IOS);
+        $model->setScreenshotUrls($screens);
+        $model->setIpadScreenshotUrls($ipadScreens);
 
-        // Mac (Error)
-        $model->setPlatform(SoftwareInterface::PLATFORM_MAC);
-
-        try {
-            $model->getTypeIos();
-            $this->fail('Not control mac platform in get type iOS');
-        }
-        catch (\LogicException $e)
-        {
+        if ('error' === $type) {
+            $this->setExpectedException('LogicException');
         }
 
-        // Set iOS platform
-        $model->setPlatform(SoftwareInterface::PLATFORM_IOS);
-
-        // Not universal iOS (Control devices)
-        $model->setScreenshotUrls(array('s1', 's2', 's3')); // Must be iPhone type iOS
-        $this->assertNotEquals($model->getTypeIos(), SoftwareInterface::TYPE_IOS_UNIVERSAL);
-
-        // Not iPad screens - iPhone type
-        $this->assertEquals($model->getTypeIos(), SoftwareInterface::TYPE_IOS_IPHONE);
-
-        // Clear screenshots and set iPad screenshots
-        $model->setScreenshotUrls(array());
-        $model->setIpadScreenshotUrls(array('s1', 's2', 's3'));
-        $this->assertEquals($model->getTypeIos(), SoftwareInterface::TYPE_IOS_IPAD);
-
-        // Add iPhone screenshots (Must be Universal)
-        $model->setScreenshotUrls(array('s1', 's2', 's3'));
-        $this->assertEquals($model->getTypeIos(), SoftwareInterface::TYPE_IOS_UNIVERSAL);
-
-        // Clear all screenshots (Error)
-        $model->setScreenshotUrls(array());
-        $model->setIpadScreenshotUrls(array());
-
-        try {
-            $model->getTypeIos();
-            $this->fail('Not control screenshots error.');
-        }
-        catch (\LogicException $e)
-        {
-        }
-
-        // Clear supported device
-        $model->setSupportedDevices(array());
-
-        try {
-            $model->getTypeIos();
-            $this->fail('Not control error: Undefined supported device and screenshots.');
-        }
-        catch (\InvalidArgumentException $e)
-        {
-        }
+        $this->assertEquals($type, $model->getTypeIos());
     }
 
     /**
-     * Control rating errors
+     * Provider for testing get type ios (By screenshots)
      */
-    public function testControlRating()
+    public function providerSoftwareTypeIos()
+    {
+        return array(
+            array(array(), array(), 'error'),
+            array(array('s1'), array(), Software::TYPE_IOS_IPHONE),
+            array(array(), array('ci1'), Software::TYPE_IOS_IPAD),
+            array(array('s1'), array('s2'), Software::TYPE_IOS_UNIVERSAL)
+        );
+    }
+
+    /**
+     * Test control ratings
+     *
+     * @dataProvider providerControlRatings
+     */
+    public function testConrolRatings($method, $rating, $error = false)
     {
         $model = $this->createNewModel();
 
-        try {
-            $model->setUserRatingCount(-2);
-            $this->fail('Not control user rating');
+        if (true === $error) {
+            $this->setExpectedException('InvalidArgumentException');
         }
-        catch (\InvalidArgumentException $e) {}
 
-        try {
-            $model->setUserRatingCountCurrent(-2);
-            $this->fail('Not control user rating for current version.');
-        }
-        catch (\InvalidArgumentException $e) {}
+        $model->{$method}($rating);
+    }
 
-        try {
-            $model->setAverageUserRating(-2);
-            $this->fail('Not control average user rating, less than 0.');
-        }
-        catch (\InvalidArgumentException $e) {}
+    /**
+     * Provider for testing set ratings errors
+     */
+    public function providerControlRatings()
+    {
+        return array(
+            array('setUserRatingCount', -2, true),
+            array('setUserRatingCount', -5, true),
+            array('setUserRatingCount', 1, false),
+            array('setUserRatingCount', 1000, false),
 
-        try {
-            $model->setAverageUserRating(2.33);
-            $this->fail('No control division by 0.5.');
-        }
-        catch (\InvalidArgumentException $e) {}
+            array('setUserRatingCountCurrent', -2, true),
+            array('setUserRatingCountCurrent', -5, true),
+            array('setUserRatingCountCurrent', 1, false),
+            array('setUserRatingCountCurrent', 1000, false),
 
-        try {
-            $model->setAverageUserRating(6);
-            $this->fail('Not control average user rating, large than 5.');
-        }
-        catch (\InvalidArgumentException $e) {}
+            array('setAverageUserRating', -1, true),
+            array('setAverageUserRating', -5, true),
+            array('setAverageUserRating', 1.1, true),
+            array('setAverageUserRating', 2.75, true),
+            array('setAverageUserRating', 5.5, true),
+            array('setAverageUserRating', 10, true),
+            array('setAverageUserRating', 5, false),
+            array('setAverageUserRating', 2.5, false),
+            array('setAverageUserRating', 0, false),
+            array('setAverageUserRating', 3, false),
 
-        try {
-            $model->setAverageUserRatingCurrent(-2);
-            $this->fail('Not control average user rating for current version, less than 0.');
-        }
-        catch (\InvalidArgumentException $e) {}
-
-        try {
-            $model->setAverageUserRatingCurrent(2.33);
-            $this->fail('No control division by 0.5 in current average.');
-        }
-        catch (\InvalidArgumentException $e) {}
-
-        try {
-            $model->setAverageUserRatingCurrent(6);
-            $this->fail('Not control average user rating for current version, large than 5.');
-        }
-        catch (\InvalidArgumentException $e) {}
+            array('setAverageUserRatingCurrent', -1, true),
+            array('setAverageUserRatingCurrent', -5, true),
+            array('setAverageUserRatingCurrent', 1.1, true),
+            array('setAverageUserRatingCurrent', 2.75, true),
+            array('setAverageUserRatingCurrent', 5.5, true),
+            array('setAverageUserRatingCurrent', 10, true),
+            array('setAverageUserRatingCurrent', 5, false),
+            array('setAverageUserRatingCurrent', 2.5, false),
+            array('setAverageUserRatingCurrent', 0, false),
+            array('setAverageUserRatingCurrent', 3, false)
+        );
     }
 }

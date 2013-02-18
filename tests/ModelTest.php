@@ -9,8 +9,8 @@
  * file that was distributed with this source code
  */
 
-use Apple\Model\ModelInterface,
-    Apple\AppStore\Stores\USStore;
+use Apple\Model\ModelInterface;
+use Apple\AppStore\Stores\USStore;
 
 abstract class ModelTest extends \PHPUnit_Framework_TestCase
 {
@@ -26,8 +26,6 @@ abstract class ModelTest extends \PHPUnit_Framework_TestCase
     {
         $model = $this->createNewModel();
 
-        $this->assertTrue($model instanceof ModelInterface);
-
         $appStore = new USStore;
         $model
             ->setArtistName('ARTIST_NAME')
@@ -35,16 +33,16 @@ abstract class ModelTest extends \PHPUnit_Framework_TestCase
             ->setTrackId(222)
             ->setAppStore($appStore);
 
-        $this->assertEquals($model->getArtistName(), 'ARTIST_NAME');
-        $this->assertEquals($model->getArtistId(), 111);
-        $this->assertEquals($model->getTrackId(), 222);
-        $this->assertEquals($model->getAppStore(), $appStore);
+        $this->assertEquals('ARTIST_NAME', $model->getArtistName());
+        $this->assertEquals(111, $model->getArtistId());
+        $this->assertEquals(222, $model->getTrackId());
+        $this->assertEquals($appStore, $model->getAppStore());
     }
 
     /**
      * Serializer test
      */
-    public function testSerialize()
+    public function tttestSerialize()
     {
         $model = $this->createNewModel();
 
@@ -57,9 +55,9 @@ abstract class ModelTest extends \PHPUnit_Framework_TestCase
 
         $newModel = unserialize($modelSerialize);
 
-        $this->assertEquals($newModel->getArtistName(), 'ARTIST');
-        $this->assertEquals($newModel->getArtistId(), 1);
-        $this->assertEquals($newModel->getTrackId(), 2);
+        $this->assertEquals('ARTIST', $newModel->getArtistName());
+        $this->assertEquals(1, $newModel->getArtistId());
+        $this->assertEquals(2, $newModel->getTrackId());
     }
 
     /**
@@ -114,7 +112,7 @@ abstract class ModelTest extends \PHPUnit_Framework_TestCase
     {
         foreach ($values as $v) {
             $model->{$setterMethod}($v);
-            $this->assertEquals($model->{$getterMethod}(), $v);
+            $this->assertEquals($v, $model->{$getterMethod}());
         }
     }
 }
