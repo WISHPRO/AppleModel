@@ -709,7 +709,7 @@ class Software extends AbstractModel
      */
     public function setPrimaryGenre(Genre $genre)
     {
-        $this->primaryGenere = $genre;
+        $this->primaryGenre = $genre;
 
         return $this;
     }
