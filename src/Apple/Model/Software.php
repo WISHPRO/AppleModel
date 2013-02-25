@@ -721,7 +721,7 @@ class Software extends AbstractModel
      */
     public function getPrimaryGenre()
     {
-        return $this->primaryGenere;
+        return $this->primaryGenre;
     }
 
     /**
