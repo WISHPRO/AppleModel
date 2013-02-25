@@ -9,7 +9,6 @@
  * file that was distributed with this source code
  */
 
-use Apple\Model\ModelInterface;
 use Apple\AppStore\USStore;
 
 abstract class ModelTest extends \PHPUnit_Framework_TestCase

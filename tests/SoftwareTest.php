@@ -10,7 +10,7 @@
  */
 
 use Apple\Model\Software;
-use Apple\Model\ModelInterface;
+use Apple\Model\Genre;
 
 /**
  * Software model test
@@ -67,8 +67,6 @@ class SoftwareTest extends \ModelTest
         $this->setValuesTest($model, 'setUserRatingCountCurrent', 'getUserRatingCountCurrent', array(1, '100', 1000));
         $this->setValuesTest($model, 'setAverageUserRatingCurrent', 'getAverageUserRatingCurrent', array(0, '1', '1.5', 4, 5));
         $this->setValuesTest($model, 'setLanguagesISO2A', 'getLanguagesISO2A', array(array('RU', 'EN', 'US')));
-        $this->setValuesTest($model, 'setPrimaryGenreId', 'getPrimaryGenreId', array(1, '6014', 345));
-        $this->setValuesTest($model, 'setprimaryGenreName', 'getPrimaryGenreName', array('Games', 'Utilites'));
         $this->setValuesTest($model, 'setArtworkUrl60', 'getArtworkUrl60', array('url 1', 'url 2'));
         $this->setValuesTest($model, 'setArtworkUrl100', 'getArtworkUrl100', array('url 1', 'url 2'));
         $this->setValuesTest($model, 'setArtworkUrl512', 'getArtworkUrl512', array('url 1', 'url 2'));
@@ -180,5 +178,16 @@ class SoftwareTest extends \ModelTest
             array('setAverageUserRatingCurrent', 0, false),
             array('setAverageUserRatingCurrent', 3, false)
         );
+    }
+
+    /**
+     * Test set genre
+     */
+    public function testSetGenre()
+    {
+        $model = $this->createNewModel();
+        $genre = new Genre;
+        $model->setPrimaryGenre($genre);
+        $this->assertEquals($genre, $model->getPrimaryGenre());
     }
 }

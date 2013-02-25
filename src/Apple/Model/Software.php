@@ -140,14 +140,9 @@ class Software extends AbstractModel
     protected $languagesISO2A = array();
 
     /**
-     * @var integer
+     * @var Genre
      */
-    protected $primaryGenreId;
-
-    /**
-     * @var string
-     */
-    protected $primaryGenereName;
+    protected $primaryGenre;
 
     /**
      * @var string
@@ -708,13 +703,13 @@ class Software extends AbstractModel
     }
 
     /**
-     * Set primary category (Genre) ID
+     * Set primary category (Genre)
      *
-     * @param integer $genreId
+     * @param Category $genre
      */
-    public function setPrimaryGenreId($genreId)
+    public function setPrimaryGenre(Genre $genre)
     {
-        $this->primaryGenreId = $genreId;
+        $this->primaryGenere = $genre;
 
         return $this;
     }
@@ -724,31 +719,9 @@ class Software extends AbstractModel
      *
      * @return string
      */
-    public function getPrimaryGenreId()
+    public function getPrimaryGenre()
     {
-        return $this->primaryGenreId;
-    }
-
-    /**
-     * Set primary category name
-     *
-     * @param string $genreName
-     */
-    public function setPrimaryGenreName($genreName)
-    {
-        $this->primaryGenereName = $genreName;
-
-        return $this;
-    }
-
-    /**
-     * Get primary category name
-     *
-     * @return string
-     */
-    public function getPrimaryGenreName()
-    {
-        return $this->primaryGenereName;
+        return $this->primaryGenere;
     }
 
     /**
