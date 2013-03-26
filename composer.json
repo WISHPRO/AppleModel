@@ -17,6 +17,8 @@
         "apple/app-store": "dev-master"
     },
 
+    "minimum-stability": "dev",
+
     "autoload": {
         "psr-0": { "Apple\\Model": "src/" }
     }
