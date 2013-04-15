@@ -598,7 +598,7 @@ class Software extends AbstractModel
         $averageUserRating = (float) $averageUserRating;
 
         if ($averageUserRating < 0 || $averageUserRating > 5) {
-            throw new \InvalidArgumentException(sprintf('Average user rating must be beetwen 0 and 5, "%s" given.', $averageUserRating));
+            throw new \InvalidArgumentException(sprintf('Average user rating must be between 0 and 5, "%s" given.', $averageUserRating));
         }
 
         if ($averageUserRating && fmod($averageUserRating, 0.5)) {
@@ -705,7 +705,7 @@ class Software extends AbstractModel
     /**
      * Set primary category (Genre)
      *
-     * @param Category $genre
+     * @param Genre $genre
      */
     public function setPrimaryGenre(Genre $genre)
     {

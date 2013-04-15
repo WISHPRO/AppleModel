@@ -15,6 +15,8 @@ abstract class ModelTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Create a new testing model
+     *
+     * @return \Apple\Model\AbstractModel
      */
     abstract protected function createNewModel();
 
@@ -41,7 +43,7 @@ abstract class ModelTest extends \PHPUnit_Framework_TestCase
     /**
      * Serializer test
      */
-    public function tttestSerialize()
+    public function testSerialize()
     {
         $model = $this->createNewModel();
 

@@ -30,6 +30,7 @@ class Genre
      * Set id
      *
      * @param integer $id
+     * @return Genre
      */
     public function setId($id)
     {
@@ -52,6 +53,7 @@ class Genre
      * Set name
      *
      * @param string $name
+     * @return Genre
      */
     public function setName($name)
     {

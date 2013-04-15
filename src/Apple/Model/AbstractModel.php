@@ -53,7 +53,7 @@ abstract class AbstractModel
     }
 
     /**
-     * Impelements if \Serializable
+     * Implements if \Serializable
      */
     public function unserialize($str)
     {
@@ -79,7 +79,8 @@ abstract class AbstractModel
     /**
      * Set track ID
      *
-     * @param integer $trackId
+     * @param int $trackId
+     * @return $this
      */
     public function setTrackId($trackId)
     {
@@ -102,6 +103,7 @@ abstract class AbstractModel
      * Set app store
      *
      * @param AppStoreInterface $appStore
+     * @return $this
      */
     public function setAppStore(AppStoreInterface $appStore)
     {
@@ -124,6 +126,7 @@ abstract class AbstractModel
      * Set artist name
      *
      * @param string $artistName
+     * @return $this
      */
     public function setArtistName($artistName)
     {
@@ -146,6 +149,7 @@ abstract class AbstractModel
      * Set artist ID
      *
      * @param integer $artistId
+     * @return $this
      */
     public function setArtistId($artistId)
     {
