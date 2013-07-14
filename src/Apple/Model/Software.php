@@ -166,7 +166,7 @@ class Software extends AbstractModel
      */
     public function setPlatform($platform)
     {
-        if (!in_array($platform, array(Software::PLATFORM_MAC, Software::PLATFORM_IOS), TRUE)) {
+        if (!in_array($platform, array(Software::PLATFORM_MAC, Software::PLATFORM_IOS), true)) {
             throw new \InvalidArgumentException(sprintf('Undefined software platform "%s".', $platform));
         }
 

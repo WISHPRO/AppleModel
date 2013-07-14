@@ -59,7 +59,7 @@ abstract class AbstractModel
     {
         $data = @unserialize($str);
 
-        if ($data === FALSE) {
+        if ($data === false) {
             throw new \RuntimeException(sprintf('Can\'t unserialize model data: %s', $str));
         }
 
