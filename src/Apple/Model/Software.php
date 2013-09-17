@@ -30,39 +30,60 @@ class Software extends AbstractModel
     const TYPE_IOS_UNIVERSAL = 3;
 
     /**
+     * Platform type (iOS or Mac)
+     *
      * @var integer
      */
     protected $platform;
 
     /**
-     * @var string $trackName
+     * Software name
+     *
+     * @var string
      */
     protected $trackName;
 
     /**
+     * Is game center enabled for this software
+     *
      * @var boolean
      */
     protected $gameCenter = false;
 
     /**
+     * Supported devices
+     *
      * @var array
      */
     protected $supportedDevices = array();
 
     /**
+     * Apple link for view this software in iTunes
+     *
      * @var string
      */
     protected $trackViewUrl;
 
     /**
+     * iPhone screenshots (if exists)
+     *
      * @var array
      */
-    protected $screenshotUrls = array();
+    protected $screenshotsIphone;
 
     /**
+     * iPad screenshots (if exists)
+     *
      * @var array
      */
-    protected $iPadScreenshotUrls = array();
+    protected $screenshotsIpad;
+
+    /**
+     * Mac screenshots (if exists)
+     *
+     * @var array
+     */
+    protected $screenshotsMac;
 
     /**
      * @var float
@@ -70,11 +91,15 @@ class Software extends AbstractModel
     protected $price;
 
     /**
+     * The currency code (ISO 4217)
+     *
      * @var string
      */
     protected $currency;
 
     /**
+     * Software version
+     *
      * @var string
      */
     protected $version;
@@ -90,11 +115,15 @@ class Software extends AbstractModel
     protected $description;
 
     /**
+     * Seller (Developer) name
+     *
      * @var string
      */
     protected $sellerName;
 
     /**
+     * Seller (Developer) url
+     *
      * @var string
      */
     protected $sellerUrl;
@@ -110,51 +139,71 @@ class Software extends AbstractModel
     protected $releaseNotes;
 
     /**
+     * File size in bytes
+     *
      * @var string
      */
     protected $fileSize;
 
     /**
+     * Full user rating
+     *
      * @var integer
      */
     protected $userRatingCount = 0;
 
     /**
+     * Average star of user rating (0 - 5)
+     *
      * @var float
      */
     protected $averageUserRating = 0;
 
     /**
+     * User rating of active version
+     *
      * @var integer
      */
     protected $userRatingCountCurrent = 0;
 
     /**
+     * Average star of active version
+     *
      * @var float
      */
     protected $averageUserRatingCurrent = 0;
 
     /**
+     * Languages list (ISO2A)
+     *
      * @var array
      */
-    protected $languagesISO2A = array();
+    protected $languages = array();
 
     /**
+     * Genre of this software
+     *
      * @var Genre
      */
     protected $primaryGenre;
 
     /**
+     * Logo url (60x60)
+     *
      * @var string
      */
     protected $artworkUrl60;
 
     /**
+     * Logo url (100x100)
+     *
      * @var string
      */
     protected $artworkUrl100;
 
     /**
+     * Logo url (512x512)
+     *
      * @var string
      */
     protected $artworkUrl512;
@@ -163,6 +212,8 @@ class Software extends AbstractModel
      * Set software platform
      *
      * @param integer $platform
+     * @throws \InvalidArgumentException
+     * @return Software
      */
     public function setPlatform($platform)
     {
@@ -187,20 +238,22 @@ class Software extends AbstractModel
 
     /**
      * Get type ios
+     * Attention: Control with screenshots
      *
+     * @throws \LogicException
      * @return integer
      */
-    public function getTypeIos()
+    public function getIosType()
     {
         if ($this->platform !== Software::PLATFORM_IOS) {
             throw new \LogicException('Can\'t get type iOS in Mac software.');
         }
 
-        if ($this->screenshotUrls && $this->iPadScreenshotUrls) {
+        if ($this->screenshotsIphone && $this->screenshotsIpad) {
             return Software::TYPE_IOS_UNIVERSAL;
-        } else if ($this->screenshotUrls) {
+        } else if ($this->screenshotsIphone) {
             return Software::TYPE_IOS_IPHONE;
-        } else if ($this->iPadScreenshotUrls) {
+        } else if ($this->screenshotsIpad) {
             return Software::TYPE_IOS_IPAD;
         } else {
             throw new \LogicException('Can\'t get type iOS. Undefined screenshots');
@@ -211,6 +264,7 @@ class Software extends AbstractModel
      * Set software name
      *
      * @param string  $trackName
+     * @return Software
      */
     public function setTrackName($trackName)
     {
@@ -233,6 +287,7 @@ class Software extends AbstractModel
      * Set status game center
      *
      * @param bool $gameCenter
+     * @return Software
      */
     public function setGameCenter($gameCenter)
     {
@@ -255,6 +310,7 @@ class Software extends AbstractModel
      * Set supported devices
      *
      * @param array $supportedDevices
+     * @return Software
      */
     public function setSupportedDevices(array $supportedDevices)
     {
@@ -277,6 +333,7 @@ class Software extends AbstractModel
      * Set software view URL (On iTunes)
      *
      * @param string $trackViewUrl
+     * @return Software
      */
     public function setTrackViewUrl($trackViewUrl)
     {
@@ -297,13 +354,13 @@ class Software extends AbstractModel
 
     /**
      * Set screenshots URL
-     *   if iPhone or Mac software
      *
-     * @param array $screenshotUrls
+     * @param array $screenshots
+     * @return Software
      */
-    public function setScreenshotUrls(array $screenshotUrls)
+    public function setScreenshotsIphone(array $screenshots)
     {
-        $this->screenshotUrls = $screenshotUrls;
+        $this->screenshotsIphone = $screenshots;
 
         return $this;
     }
@@ -311,21 +368,22 @@ class Software extends AbstractModel
     /**
      * Get screenshots url
      *
-     * @return array
+     * @return array|null
      */
-    public function getScreenshotUrls()
+    public function getScreenshotsIphone()
     {
-        return $this->screenshotUrls;
+        return $this->screenshotsIphone;
     }
 
     /**
      * Set iPad screenshots url
      *
-     * @param array $iPadScreenshotUrls
+     * @param array $screenshots
+     * @return Software
      */
-    public function setIpadScreenshotUrls(array $iPadScreenshotUrls)
+    public function setScreenshotsIpad(array $screenshots)
     {
-        $this->iPadScreenshotUrls = $iPadScreenshotUrls;
+        $this->screenshotsIpad = $screenshots;
 
         return $this;
     }
@@ -333,17 +391,41 @@ class Software extends AbstractModel
     /**
      * Get iPad screenshots url
      *
-     * @return array
+     * @return array|null
      */
-    public function getIpadScreenshotUrls()
+    public function getScreenshotsIpad()
     {
-        return $this->iPadScreenshotUrls;
+        return $this->screenshotsIpad;
+    }
+
+    /**
+     * Set Mac screenshots
+     *
+     * @param array $screenshots
+     * @return Software
+     */
+    public function setScreenshotsMac(array $screenshots)
+    {
+        $this->screenshotsMac = $screenshots;
+
+        return $this;
+    }
+
+    /**
+     * Get Mac screenshots
+     *
+     * @return array|null
+     */
+    public function getScreenshotsMac()
+    {
+        return $this->screenshotsMac;
     }
 
     /**
      * Set price
      *
      * @param float $price
+     * @return Software
      */
     public function setPrice($price)
     {
@@ -366,6 +448,7 @@ class Software extends AbstractModel
      * Set currency
      *
      * @param string $currency
+     * @return Software
      */
     public function setCurrency($currency)
     {
@@ -388,6 +471,7 @@ class Software extends AbstractModel
      * Set version
      *
      * @param string $version
+     * @return Software
      */
     public function setVersion($version)
     {
@@ -410,6 +494,7 @@ class Software extends AbstractModel
      * Set bundle ID
      *
      * @param string $bundleId
+     * @return Software
      */
     public function setBundleId($bundleId)
     {
@@ -432,6 +517,7 @@ class Software extends AbstractModel
      * Set description
      *
      * @param string $description
+     * @return Software
      */
     public function setDescription($description)
     {
@@ -454,6 +540,7 @@ class Software extends AbstractModel
      * Set seller name
      *
      * @param string $sellerName
+     * @return Software
      */
     public function setSellerName($sellerName)
     {
@@ -476,6 +563,7 @@ class Software extends AbstractModel
      * Set seller url
      *
      * @param string $sellerUrl
+     * @return Software
      */
     public function setSellerUrl($sellerUrl)
     {
@@ -498,6 +586,7 @@ class Software extends AbstractModel
      * Set release date
      *
      * @param \DateTime $releaseDate
+     * @return Software
      */
     public function setReleaseDate(\DateTime $releaseDate)
     {
@@ -520,6 +609,7 @@ class Software extends AbstractModel
      * Set release notes
      *
      * @param string $releaseNotes
+     * @return Software
      */
     public function setReleaseNotes($releaseNotes)
     {
@@ -542,6 +632,7 @@ class Software extends AbstractModel
      * Set software file size in bytes
      *
      * @param integer $fileSize
+     * @return Software
      */
     public function setFileSize($fileSize)
     {
@@ -564,13 +655,18 @@ class Software extends AbstractModel
      * Set user rating count
      *
      * @param integer $userRatingCount
+     * @throws \InvalidArgumentException
+     * @return Software
      */
     public function setUserRatingCount($userRatingCount)
     {
         $userRatingCount = (int) $userRatingCount;
 
         if ($userRatingCount < 0) {
-            throw new \InvalidArgumentException(sprintf('User rating can\'t be less than "0", "%s" given.', $userRatingCount));
+            throw new \InvalidArgumentException(sprintf(
+                'User rating can\'t be less than "0", "%s" given.',
+                $userRatingCount
+            ));
         }
 
         $this->userRatingCount = (int) $userRatingCount;
@@ -592,17 +688,25 @@ class Software extends AbstractModel
      * Set user average rating
      *
      * @param float $averageUserRating
+     * @throws \InvalidArgumentException
+     * @return Software
      */
     public function setAverageUserRating($averageUserRating)
     {
         $averageUserRating = (float) $averageUserRating;
 
         if ($averageUserRating < 0 || $averageUserRating > 5) {
-            throw new \InvalidArgumentException(sprintf('Average user rating must be between 0 and 5, "%s" given.', $averageUserRating));
+            throw new \InvalidArgumentException(sprintf(
+                'Average user rating must be between 0 and 5, "%s" given.',
+                $averageUserRating
+            ));
         }
 
         if ($averageUserRating && fmod($averageUserRating, 0.5)) {
-            throw new \InvalidArgumentException(sprintf('Rating must be division by 0.5, "%s" given.', $averageUserRating));
+            throw new \InvalidArgumentException(sprintf(
+                'Rating must be division by 0.5, "%s" given.',
+                $averageUserRating
+            ));
         }
 
         $this->averageUserRating = $averageUserRating;
@@ -624,13 +728,18 @@ class Software extends AbstractModel
      * Set user rating count for current version
      *
      * @param integer $userRatingCountCurrent
+     * @throws \InvalidArgumentException
+     * @return Software
      */
     public function setUserRatingCountCurrent($userRatingCountCurrent)
     {
         $userRatingCountCurrent = (int) $userRatingCountCurrent;
 
         if ($userRatingCountCurrent < 0) {
-            throw new \InvalidArgumentException(sprintf('User rating can\'t be less than "0", "%s" given.', $userRatingCountCurrent));
+            throw new \InvalidArgumentException(sprintf(
+                'User rating can\'t be less than "0", "%s" given.',
+                $userRatingCountCurrent
+            ));
         }
 
         $this->userRatingCountCurrent = (int) $userRatingCountCurrent;
@@ -652,17 +761,25 @@ class Software extends AbstractModel
      * Set average user rating for current version
      *
      * @param float $averageUserRatingCurrent
+     * @throws \InvalidArgumentException
+     * @return Software
      */
     public function setAverageUserRatingCurrent($averageUserRatingCurrent)
     {
         $averageUserRatingCurrent = (float) $averageUserRatingCurrent;
 
         if ($averageUserRatingCurrent < 0 || $averageUserRatingCurrent > 5) {
-            throw new \InvalidArgumentException(sprintf('Average user rating must be beetwen 0 and 5, "%s" given.', $averageUserRatingCurrent));
+            throw new \InvalidArgumentException(sprintf(
+                'Average user rating must be between 0 and 5, "%s" given.',
+                $averageUserRatingCurrent
+            ));
         }
 
         if ($averageUserRatingCurrent && fmod($averageUserRatingCurrent, 0.5)) {
-            throw new \InvalidArgumentException(sprintf('Rating must be division by 0.5, "%s" given.', $averageUserRatingCurrent));
+            throw new \InvalidArgumentException(sprintf(
+                'Rating must be division by 0.5, "%s" given.',
+                $averageUserRatingCurrent
+            ));
         }
 
         $this->averageUserRatingCurrent = $averageUserRatingCurrent;
@@ -671,7 +788,7 @@ class Software extends AbstractModel
     }
 
     /**
-     * Get average user rating for currect version
+     * Get average user rating for current version
      *
      * @return float
      */
@@ -681,31 +798,33 @@ class Software extends AbstractModel
     }
 
     /**
-     * Set languages in ISO2A
+     * Set languages (ISO2A)
      *
-     * @param array $languagesISO2A
+     * @param array $languages
+     * @return Software
      */
-    public function setLanguagesISO2A(array $languagesISO2A)
+    public function setLanguages(array $languages)
     {
-        $this->languagesISO2A = $languagesISO2A;
+        $this->languages = $languages;
 
         return $this;
     }
 
     /**
-     * Get languages
+     * Get languages (ISO2A)
      *
      * @return array
      */
-    public function getLanguagesISO2A()
+    public function getLanguages()
     {
-        return $this->languagesISO2A;
+        return $this->languages;
     }
 
     /**
      * Set primary category (Genre)
      *
      * @param Genre $genre
+     * @return Software
      */
     public function setPrimaryGenre(Genre $genre)
     {
@@ -715,7 +834,7 @@ class Software extends AbstractModel
     }
 
     /**
-     * Get primary category ID
+     * Get primary genre
      *
      * @return string
      */
@@ -725,9 +844,10 @@ class Software extends AbstractModel
     }
 
     /**
-     * Set artwork URL 60
+     * Set artwork url (logo) 60x60
      *
      * @param string $artworkUrl
+     * @return Software
      */
     public function setArtworkUrl60($artworkUrl)
     {
@@ -737,7 +857,7 @@ class Software extends AbstractModel
     }
 
     /**
-     * Get artwork URL 60
+     * Get artwork url (logo) 60x60
      *
      * @return string
      */
@@ -747,9 +867,10 @@ class Software extends AbstractModel
     }
 
     /**
-     * Set artwork URL 100
+     * Set artwork url (logo) 100x100
      *
      * @param string $artworkUrl
+     * @return Software
      */
     public function setArtworkUrl100($artworkUrl)
     {
@@ -759,7 +880,7 @@ class Software extends AbstractModel
     }
 
     /**
-     * Get artwork URL 100
+     * Get artwork url (logo) 100x100
      *
      * @return string
      */
@@ -769,9 +890,10 @@ class Software extends AbstractModel
     }
 
     /**
-     * Set artwork URL 512
+     * Set artwork url (logo) 512x512
      *
      * @param string $artworkUrl512
+     * @return Software
      */
     public function setArtworkUrl512($artworkUrl512)
     {
@@ -781,7 +903,9 @@ class Software extends AbstractModel
     }
 
     /**
-     * Get artwork URL 512
+     * Get artwork url (logo) 512x512
+     *
+     * @return string
      */
     public function getArtworkUrl512()
     {

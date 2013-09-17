@@ -24,7 +24,7 @@ $softwareModel = new Software;
 $softwareModel
     ->setTrackId(123456789)
     ->setTrackName('Track name')
-    // antoher setters
+    // another setters
     ->setArtistId(54321)
     ->setArtistName('Artist name');
 

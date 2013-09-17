@@ -66,7 +66,7 @@ class SoftwareTest extends \ModelTest
         $this->setValuesTest($model, 'setAverageUserRating', 'getAverageUserRating', array(0, 1, 1.5, 4.5, 5));
         $this->setValuesTest($model, 'setUserRatingCountCurrent', 'getUserRatingCountCurrent', array(1, '100', 1000));
         $this->setValuesTest($model, 'setAverageUserRatingCurrent', 'getAverageUserRatingCurrent', array(0, '1', '1.5', 4, 5));
-        $this->setValuesTest($model, 'setLanguagesISO2A', 'getLanguagesISO2A', array(array('RU', 'EN', 'US')));
+        $this->setValuesTest($model, 'setLanguages', 'getLanguages', array(array('RU', 'EN', 'US')));
         $this->setValuesTest($model, 'setArtworkUrl60', 'getArtworkUrl60', array('url 1', 'url 2'));
         $this->setValuesTest($model, 'setArtworkUrl100', 'getArtworkUrl100', array('url 1', 'url 2'));
         $this->setValuesTest($model, 'setArtworkUrl512', 'getArtworkUrl512', array('url 1', 'url 2'));
@@ -81,11 +81,14 @@ class SoftwareTest extends \ModelTest
             'screenhot1', 'screenshot2'
         );
 
-        $model->setScreenshotUrls($screenshots);
-        $this->assertEquals($screenshots, $model->getScreenshotUrls());
+        $model->setScreenshotsIphone($screenshots);
+        $this->assertEquals($screenshots, $model->getScreenshotsIphone());
 
-        $model->setIpadScreenshotUrls($screenshots);
-        $this->assertEquals($screenshots, $model->getIpadScreenshotUrls());
+        $model->setScreenshotsIpad($screenshots);
+        $this->assertEquals($screenshots, $model->getScreenshotsIpad());
+
+        $model->setScreenshotsMac($screenshots);
+        $this->assertEquals($screenshots, $model->getScreenshotsMac());
 
         // Supported devices test
         $model->setSupportedDevices(array('ipad', 'iphone'));
@@ -101,14 +104,14 @@ class SoftwareTest extends \ModelTest
     {
         $model = $this->createNewModel();
         $model->setPlatform(Software::PLATFORM_IOS);
-        $model->setScreenshotUrls($screens);
-        $model->setIpadScreenshotUrls($ipadScreens);
+        $model->setScreenshotsIphone($screens);
+        $model->setScreenshotsIpad($ipadScreens);
 
         if ('error' === $type) {
             $this->setExpectedException('LogicException');
         }
 
-        $this->assertEquals($type, $model->getTypeIos());
+        $this->assertEquals($type, $model->getIosType());
     }
 
     /**
@@ -129,7 +132,7 @@ class SoftwareTest extends \ModelTest
      *
      * @dataProvider providerControlRatings
      */
-    public function testConrolRatings($method, $rating, $error = false)
+    public function testControlRatings($method, $rating, $error = false)
     {
         $model = $this->createNewModel();
 
