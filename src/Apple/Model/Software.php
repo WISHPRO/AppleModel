@@ -866,7 +866,7 @@ class Software extends AbstractModel
     /**
      * Get primary genre
      *
-     * @return string
+     * @return Genre
      */
     public function getPrimaryGenre()
     {
