@@ -29,6 +29,8 @@ abstract class AbstractModel
     protected $appStore;
 
     /**
+     * Copyright/Artist name
+     *
      * @var string
      */
     protected $artistName;

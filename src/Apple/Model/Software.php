@@ -44,13 +44,6 @@ class Software extends AbstractModel
     protected $trackName;
 
     /**
-     * Copyright
-     *
-     * @var string
-     */
-    protected $copyright;
-
-    /**
      * Is game center enabled for this software
      *
      * @var boolean
@@ -288,29 +281,6 @@ class Software extends AbstractModel
     public function getTrackName()
     {
         return $this->trackName;
-    }
-
-    /**
-     * Set copyright
-     *
-     * @param string $copyright
-     * @return Software
-     */
-    public function setCopyright($copyright)
-    {
-        $this->copyright = $copyright;
-
-        return $this;
-    }
-
-    /**
-     * Get copyright
-     *
-     * @return string
-     */
-    public function getCopyright()
-    {
-        return $this->copyright;
     }
 
     /**

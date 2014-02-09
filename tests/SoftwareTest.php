@@ -50,7 +50,6 @@ class SoftwareTest extends \ModelTest
         }
 
         // Price, version, game center, bundle and etc. tests
-        $this->setValuesTest($model, 'setCopyright', 'getCopyright', array('foo', 'bar'));
         $this->setValuesTest($model, 'setTrackName', 'getTrackName', array('AppRus', 'Finder'));
         $this->setValuesTest($model, 'setPrice', 'getPrice', array(0, 1.99, 5.99, 10));
         $this->setValuesTest($model, 'setVersion', 'getVersion', array('1.1', '2.0-dev', 3.1));
