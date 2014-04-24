@@ -14,10 +14,8 @@
 
     "require": {
         "php": ">=5.3.3",
-        "apple/app-store": "v1.0"
+        "apple/app-store": "~1.0"
     },
-
-    "minimum-stability": "dev",
 
     "autoload": {
         "psr-0": { "Apple\\Model": "src/" }
