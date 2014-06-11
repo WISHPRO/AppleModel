@@ -11,7 +11,7 @@
 
 namespace Apple\Model;
 
-use Apple\AppStore\AppStoreInterface;
+use Apple\AppStore\StoreInterface;
 
 /**
  * Abstract core for control apple models
@@ -24,7 +24,7 @@ abstract class AbstractModel
     protected $trackId;
 
     /**
-     * @var AppStoreInterface
+     * @var StoreInterface
      */
     protected $appStore;
 
@@ -104,10 +104,10 @@ abstract class AbstractModel
     /**
      * Set app store
      *
-     * @param AppStoreInterface $appStore
+     * @param StoreInterface $appStore
      * @return $this
      */
-    public function setAppStore(AppStoreInterface $appStore)
+    public function setAppStore(StoreInterface $appStore)
     {
         $this->appStore = $appStore;
 
@@ -117,7 +117,7 @@ abstract class AbstractModel
     /**
      * Get app store
      *
-     * @return AppStoreInterface
+     * @return StoreInterface
      */
     public function getAppStore()
     {
