@@ -9,7 +9,7 @@
  * file that was distributed with this source code
  */
 
-use Apple\AppStore\USStore;
+use Apple\AppStore\Store;
 
 abstract class ModelTest extends \PHPUnit_Framework_TestCase
 {
@@ -27,7 +27,7 @@ abstract class ModelTest extends \PHPUnit_Framework_TestCase
     {
         $model = $this->createNewModel();
 
-        $appStore = new USStore;
+        $appStore = new Store('us');
         $model
             ->setArtistName('ARTIST_NAME')
             ->setArtistId(111)
