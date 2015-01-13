@@ -53,7 +53,7 @@ class SoftwareTest extends \ModelTest
         $this->setValuesTest($model, 'setTrackName', 'getTrackName', array('AppRus', 'Finder'));
         $this->setValuesTest($model, 'setPrice', 'getPrice', array(0, 1.99, 5.99, 10));
         $this->setValuesTest($model, 'setVersion', 'getVersion', array('1.1', '2.0-dev', 3.1));
-        $this->setValuesTest($model, 'setGameCenter', 'getGameCenter', array(TRUE, FALSE));
+        $this->setValuesTest($model, 'setGameCenter', 'isGameCenter', array(true, false));
         $this->setValuesTest($model, 'setBundleId', 'getBundleId', array('com.apple.itunes', 11, 'new.bundle'));
         $this->setValuesTest($model, 'setCurrency', 'getCurrency', array('RUB', 'USD'));
         $this->setValuesTest($model, 'setDescription', 'getDescription', array('description 1', str_repeat('description 2', 1000)));
@@ -70,6 +70,8 @@ class SoftwareTest extends \ModelTest
         $this->setValuesTest($model, 'setArtworkUrl60', 'getArtworkUrl60', array('url 1', 'url 2'));
         $this->setValuesTest($model, 'setArtworkUrl100', 'getArtworkUrl100', array('url 1', 'url 2'));
         $this->setValuesTest($model, 'setArtworkUrl512', 'getArtworkUrl512', array('url 1', 'url 2'));
+        $this->setValuesTest($model, 'setAdvisories', 'getAdvisories', array(array('foo', 'bar')));
+        $this->setValuesTest($model, 'setAdvisoryRating', 'getAdvisoryRating', array(12, 10));
 
         // Track view url test
         $this->setValuesTest($model, 'setTrackViewUrl', 'getTrackViewurl', array(
