@@ -188,6 +188,11 @@ class Software extends AbstractModel
     protected $primaryGenre;
 
     /**
+     * @var array|Genre[]
+     */
+    protected $genres = array();
+
+    /**
      * Logo url (60x60)
      *
      * @var string
@@ -209,11 +214,23 @@ class Software extends AbstractModel
     protected $artworkUrl512;
 
     /**
+     * @var array
+     */
+    protected $advisories = array();
+
+    /**
+     * @var string
+     */
+    protected $advisoryRating;
+
+    /**
      * Set software platform
      *
      * @param integer $platform
-     * @throws \InvalidArgumentException
+     *
      * @return Software
+     *
+     * @throws \InvalidArgumentException
      */
     public function setPlatform($platform)
     {
@@ -240,8 +257,9 @@ class Software extends AbstractModel
      * Get type ios
      * Attention: Control with screenshots
      *
-     * @throws \LogicException
      * @return integer
+     *
+     * @throws \LogicException
      */
     public function getIosType()
     {
@@ -264,6 +282,7 @@ class Software extends AbstractModel
      * Set software name
      *
      * @param string  $trackName
+     *
      * @return Software
      */
     public function setTrackName($trackName)
@@ -287,6 +306,7 @@ class Software extends AbstractModel
      * Set status game center
      *
      * @param bool $gameCenter
+     *
      * @return Software
      */
     public function setGameCenter($gameCenter)
@@ -300,8 +320,22 @@ class Software extends AbstractModel
      * Get status game center
      *
      * @return bool
+     *
+     * @deprecated
      */
     public function getGameCenter()
+    {
+        trigger_error('The method "getGameCenter" is deprecated. Please use "isGameCenter".', E_USER_DEPRECATED);
+
+        return $this->gameCenter;
+    }
+
+    /**
+     * Is game center enabled
+     *
+     * @return bool
+     */
+    public function isGameCenter()
     {
         return $this->gameCenter;
     }
@@ -310,6 +344,7 @@ class Software extends AbstractModel
      * Set supported devices
      *
      * @param array $supportedDevices
+     *
      * @return Software
      */
     public function setSupportedDevices(array $supportedDevices)
@@ -333,6 +368,7 @@ class Software extends AbstractModel
      * Set software view URL (On iTunes)
      *
      * @param string $trackViewUrl
+     *
      * @return Software
      */
     public function setTrackViewUrl($trackViewUrl)
@@ -356,6 +392,7 @@ class Software extends AbstractModel
      * Set screenshots URL
      *
      * @param array $screenshots
+     *
      * @return Software
      */
     public function setScreenshotsIphone(array $screenshots)
@@ -379,6 +416,7 @@ class Software extends AbstractModel
      * Set iPad screenshots url
      *
      * @param array $screenshots
+     *
      * @return Software
      */
     public function setScreenshotsIpad(array $screenshots)
@@ -402,6 +440,7 @@ class Software extends AbstractModel
      * Set Mac screenshots
      *
      * @param array $screenshots
+     *
      * @return Software
      */
     public function setScreenshotsMac(array $screenshots)
@@ -425,6 +464,7 @@ class Software extends AbstractModel
      * Set price
      *
      * @param float $price
+     *
      * @return Software
      */
     public function setPrice($price)
@@ -448,6 +488,7 @@ class Software extends AbstractModel
      * Set currency
      *
      * @param string $currency
+     *
      * @return Software
      */
     public function setCurrency($currency)
@@ -471,6 +512,7 @@ class Software extends AbstractModel
      * Set version
      *
      * @param string $version
+     *
      * @return Software
      */
     public function setVersion($version)
@@ -494,6 +536,7 @@ class Software extends AbstractModel
      * Set bundle ID
      *
      * @param string $bundleId
+     *
      * @return Software
      */
     public function setBundleId($bundleId)
@@ -517,6 +560,7 @@ class Software extends AbstractModel
      * Set description
      *
      * @param string $description
+     *
      * @return Software
      */
     public function setDescription($description)
@@ -540,6 +584,7 @@ class Software extends AbstractModel
      * Set seller name
      *
      * @param string $sellerName
+     *
      * @return Software
      */
     public function setSellerName($sellerName)
@@ -563,6 +608,7 @@ class Software extends AbstractModel
      * Set seller url
      *
      * @param string $sellerUrl
+     *
      * @return Software
      */
     public function setSellerUrl($sellerUrl)
@@ -586,6 +632,7 @@ class Software extends AbstractModel
      * Set release date
      *
      * @param \DateTime $releaseDate
+     *
      * @return Software
      */
     public function setReleaseDate(\DateTime $releaseDate)
@@ -609,6 +656,7 @@ class Software extends AbstractModel
      * Set release notes
      *
      * @param string $releaseNotes
+     *
      * @return Software
      */
     public function setReleaseNotes($releaseNotes)
@@ -632,6 +680,7 @@ class Software extends AbstractModel
      * Set software file size in bytes
      *
      * @param integer $fileSize
+     *
      * @return Software
      */
     public function setFileSize($fileSize)
@@ -655,8 +704,10 @@ class Software extends AbstractModel
      * Set user rating count
      *
      * @param integer $userRatingCount
-     * @throws \InvalidArgumentException
+     *
      * @return Software
+     *
+     * @throws \InvalidArgumentException
      */
     public function setUserRatingCount($userRatingCount)
     {
@@ -688,8 +739,10 @@ class Software extends AbstractModel
      * Set user average rating
      *
      * @param float $averageUserRating
-     * @throws \InvalidArgumentException
+     *
      * @return Software
+     *
+     * @throws \InvalidArgumentException
      */
     public function setAverageUserRating($averageUserRating)
     {
@@ -728,8 +781,10 @@ class Software extends AbstractModel
      * Set user rating count for current version
      *
      * @param integer $userRatingCountCurrent
-     * @throws \InvalidArgumentException
+     *
      * @return Software
+     *
+     * @throws \InvalidArgumentException
      */
     public function setUserRatingCountCurrent($userRatingCountCurrent)
     {
@@ -761,8 +816,10 @@ class Software extends AbstractModel
      * Set average user rating for current version
      *
      * @param float $averageUserRatingCurrent
-     * @throws \InvalidArgumentException
+     *
      * @return Software
+     *
+     * @throws \InvalidArgumentException
      */
     public function setAverageUserRatingCurrent($averageUserRatingCurrent)
     {
@@ -801,6 +858,7 @@ class Software extends AbstractModel
      * Set languages (ISO2A)
      *
      * @param array $languages
+     *
      * @return Software
      */
     public function setLanguages(array $languages)
@@ -824,6 +882,7 @@ class Software extends AbstractModel
      * Set primary category (Genre)
      *
      * @param Genre $genre
+     *
      * @return Software
      */
     public function setPrimaryGenre(Genre $genre)
@@ -844,9 +903,52 @@ class Software extends AbstractModel
     }
 
     /**
+     * Set genres
+     *
+     * @param array|Genre[] $genres
+     *
+     * @return Software
+     */
+    public function setGenres(array $genres)
+    {
+        $this->genres = array();
+
+        foreach ($genres as $genre) {
+            $this->addGenre($genre);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get genres
+     *
+     * @return array|Genre[]
+     */
+    public function getGenres()
+    {
+        return $this->genres;
+    }
+
+    /**
+     * Add genre
+     *
+     * @param Genre $genre
+     *
+     * @return Software
+     */
+    public function addGenre(Genre $genre)
+    {
+        $this->genres[$genre->getId()] = $genre;
+
+        return $this;
+    }
+
+    /**
      * Set artwork url (logo) 60x60
      *
      * @param string $artworkUrl
+     *
      * @return Software
      */
     public function setArtworkUrl60($artworkUrl)
@@ -870,6 +972,7 @@ class Software extends AbstractModel
      * Set artwork url (logo) 100x100
      *
      * @param string $artworkUrl
+     *
      * @return Software
      */
     public function setArtworkUrl100($artworkUrl)
@@ -893,6 +996,7 @@ class Software extends AbstractModel
      * Set artwork url (logo) 512x512
      *
      * @param string $artworkUrl512
+     *
      * @return Software
      */
     public function setArtworkUrl512($artworkUrl512)
@@ -910,5 +1014,53 @@ class Software extends AbstractModel
     public function getArtworkUrl512()
     {
         return $this->artworkUrl512;
+    }
+
+    /**
+     * Set advisories
+     *
+     * @param array $advisories
+     *
+     * @return Software
+     */
+    public function setAdvisories(array $advisories)
+    {
+        $this->advisories = $advisories;
+
+        return $this;
+    }
+
+    /**
+     * Get advisories
+     *
+     * @return array
+     */
+    public function getAdvisories()
+    {
+        return $this->advisories;
+    }
+
+    /**
+     * Set content advisory rating
+     *
+     * @param string $rating
+     *
+     * @return Software
+     */
+    public function setAdvisoryRating($rating)
+    {
+        $this->advisoryRating = $rating;
+
+        return $this;
+    }
+
+    /**
+     * Get content advisory rating
+     *
+     * @return string
+     */
+    public function getAdvisoryRating()
+    {
+        return $this->advisoryRating;
     }
 }

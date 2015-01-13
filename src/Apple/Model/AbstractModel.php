@@ -82,6 +82,7 @@ abstract class AbstractModel
      * Set track ID
      *
      * @param int $trackId
+     *
      * @return $this
      */
     public function setTrackId($trackId)
@@ -105,6 +106,7 @@ abstract class AbstractModel
      * Set app store
      *
      * @param StoreInterface $appStore
+     *
      * @return $this
      */
     public function setAppStore(StoreInterface $appStore)
@@ -128,6 +130,7 @@ abstract class AbstractModel
      * Set artist name
      *
      * @param string $artistName
+     *
      * @return $this
      */
     public function setArtistName($artistName)
@@ -151,6 +154,7 @@ abstract class AbstractModel
      * Set artist ID
      *
      * @param integer $artistId
+     *
      * @return $this
      */
     public function setArtistId($artistId)
